@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPs Importantes</title>
+
+    <!-- Agregar Bootstrap desde CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">IPs Importantes</h1>
+        <div class="text-center mt-4">
+            <a href="/dashboard" class="btn btn-secondary">Volver al Dashboard</a>
+        </div>
+        <tr>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>IP</th>
+                    <th>Hostname</th>
+                    <th>País</th>
+                    <th>Última Consulta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ip in important_ips %}
+                <tr>
+                    <td>{{ ip["ip"] }}</td>
+                    <td>{{ ip["hostname"] }}</td>
+                    <td>{{ ip["country_code"] }}</td>
+                    <td>{{ ip["last_checked"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+
+    <!-- Agregar JS de Bootstrap (Opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

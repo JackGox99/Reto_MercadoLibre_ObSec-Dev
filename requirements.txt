@@ -1,0 +1,9 @@
+fastapi==0.95.2
+uvicorn==0.22.0
+python-jose==3.3.0  # Para manejo de JWT (si usas jose para tokens)
+PyJWT==2.8.0  # Librería jwt para decodificación y manejo de errores
+passlib==1.7.4  # Para hashing de contraseñas
+requests==2.31.0  # Para peticiones HTTP
+sqlite-utils==3.33.0  # Utilidades para SQLite (si se requiere más funcionalidad)
+jinja2
+python-multipart

@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: ip-management-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - SECRET_KEY_FILE=/app/secret_key.txt
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge

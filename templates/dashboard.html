@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Consulta de IPs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="/static/image.png" type="image/png">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Dashboard - Consulta de IPs</h1>
+        <!-- Botones de navegación -->
+        <div class="d-flex justify-content-between mb-3">
+            <div>
+                <a href="/filter-history" class="btn btn-info mr-2">Filtrar Historial</a>
+                <button onclick="window.location.href='/important-ips'" class="btn btn-info mr-2">Ver IPs Importantes</button>
+            </div>
+            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+        <!-- Formulario de búsqueda y agregar IP importante -->
+        <div class="d-flex justify-content-center mb-4">
+            <div class="d-flex flex-column align-items-center w-50">
+                <form action="/ip-info" method="get" class="form-inline w-100">
+                    <input type="text" name="ips" class="form-control mr-2 w-75" placeholder="Ingrese una o más IPs separadas por comas" required>
+                    <button type="submit" class="btn btn-primary w-25">Buscar IP</button>
+                </form>
+                
+                <form action="/add-important-ip" method="post" class="form-inline w-100">
+                    <input type="text" name="ip" class="form-control mr-2 w-75" placeholder="Ingrese la IP" required>
+                    <button type="submit" class="btn btn-success w-25">Agregar IP Importante</button>
+                </form>
+                
+                
+                
+            </div>
+        </div>
+
+
+
+        <!-- Tabla de Historial -->
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>IP</th>
+                    <th>Hostname</th>
+                    <th>País</th>
+                    <th>Región</th>
+                    <th>Ciudad</th>
+                    <th>Localización</th>
+                    <th>Proveedor</th>
+                    <th>Es Cloud</th>
+                    <th>Es TOR</th>
+                    <th>Es VPN</th>
+                    <th>Es Bot</th>
+                    <th>Es Maliciosa</th>
+                    <th>Usuario</th>
+                    <th>Última Consulta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                <tr>
+                    <td>{{ entry["ip"] }}</td>
+                    <td>{{ entry["hostname"] }}</td>
+                    <td>{{ entry["country_code"] }}</td>
+                    <td>{{ entry["region"] }}</td>
+                    <td>{{ entry["city"] }}</td>
+                    <td>{{ entry["loc"] }}</td>
+                    <td>{{ entry["org"] }}</td>
+                    <td>{{ entry["is_cloud_provider"] }}</td>
+                    <td>{{ entry["is_tor"] }}</td>
+                    <td>{{ entry["is_vpn"] }}</td>
+                    <td>{{ entry["is_bot"] }}</td>
+                    <td>{{ entry["is_malicious"] }}</td>
+                    <td>{{ entry["username"] }}</td>
+                    <td>{{ entry["last_checked"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

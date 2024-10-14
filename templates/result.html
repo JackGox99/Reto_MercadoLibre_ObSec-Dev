@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="result mt-5">
+    <h1 class="mb-4">Resultados de las IPs</h1>
+
+    {% if results %}
+        <div class="list-group">
+            {% for ip_info in results %}
+                <div class="list-group-item mb-3">
+                    <h4><strong>IP:</strong> {{ ip_info["ip"] }}</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Hostname:</strong> {{ ip_info.get("hostname", "N/A") }}</li>
+                        <li class="list-group-item"><strong>País:</strong> {{ ip_info.get("country_code", "N/A") }}</li>
+                        <li class="list-group-item"><strong>Región:</strong> {{ ip_info.get("region", "N/A") }}</li>
+                        <li class="list-group-item"><strong>Ciudad:</strong> {{ ip_info.get("city", "N/A") }}</li>
+                        <li class="list-group-item"><strong>Localización:</strong> {{ ip_info.get("loc", "N/A") }}</li>
+                        <li class="list-group-item"><strong>Proveedor Cloud:</strong> {{ ip_info.get("org", "N/A") }}</li>
+                        <li class="list-group-item"><strong>Es TOR:</strong> {{ "Sí" if ip_info["is_tor"] else "No" }}</li>
+                        <li class="list-group-item"><strong>Es VPN:</strong> {{ "Sí" if ip_info["is_vpn"] else "No" }}</li>
+                        <li class="list-group-item"><strong>Es Bot:</strong> {{ "Sí" if ip_info["is_bot"] else "No" }}</li>
+                        <li class="list-group-item"><strong>Es Maliciosa:</strong> {{ "Sí" if ip_info["is_malicious"] else "No" }}</li>
+                        <li class="list-group-item"><strong>Última Consulta:</strong> {{ ip_info.get("last_checked", "N/A") }}</li>
+                        <li class="list-group-item"><strong>Consultada por:</strong> {{ ip_info.get("username", "N/A") }}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="alert alert-warning">No se encontraron resultados para las IPs ingresadas.</p>
+    {% endif %}
+
+    <button class="btn btn-secondary mt-3" onclick="window.location.href='/dashboard'">Volver al Dashboard</button>
+</section>
+{% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrar Historial de IPs</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Filtrar Historial de IPs</h1>
+
+        <form action="/filter-history" method="get" class="mt-4">
+            <div class="form-row">
+                
+                <div class="col-md-3">
+                    <label for="country_code">Código de País (ISO):</label>
+                    <input type="text" class="form-control" name="country_code" id="country_code" placeholder="US, ID, etc.">
+                </div>
+                <div class="col-md-2">
+                    <label for="is_tor">IPs en TOR:</label>
+                    <select class="form-control" name="is_tor" id="is_tor">
+                        <option value="">Cualquiera</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="is_cloud">IPs en la Nube:</label>
+                    <select class="form-control" name="is_cloud" id="is_cloud">
+                        <option value="">Cualquiera</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="start_date">Fecha Inicial:</label>
+                    <input type="date" class="form-control" name="start_date" id="start_date">
+                </div>
+                <div class="col-md-2">
+                    <label for="end_date">Fecha Final:</label>
+                    <input type="date" class="form-control" name="end_date" id="end_date">
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary btn-block">Filtrar</button>
+                </div>
+                <a href="/dashboard" class="btn btn-secondary mt-3">Volver al Dashboard</a>
+            </div>
+        </form>
+
+        <table class="table table-striped mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>IP</th>
+                    <th>Hostname</th>
+                    <th>País</th>
+                    <th>Región</th>
+                    <th>Ciudad</th>
+                    <th>Localización</th>
+                    <th>Proveedor</th>
+                    <th>Es Cloud</th>
+                    <th>Es TOR</th>
+                    <th>Es VPN</th>
+                    <th>Es Bot</th>
+                    <th>Es Maliciosa</th>
+                    <th>Usuario</th>
+                    <th>Última Consulta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                <tr>
+                    <td>{{ entry["ip"] }}</td>
+                    <td>{{ entry["hostname"] }}</td>
+                    <td>{{ entry["country_code"] }}</td>
+                    <td>{{ entry["region"] }}</td>
+                    <td>{{ entry["city"] }}</td>
+                    <td>{{ entry["loc"] }}</td>
+                    <td>{{ entry["org"] }}</td>
+                    <td>{{ entry["is_cloud_provider"] }}</td>
+                    <td>{{ entry["is_tor"] }}</td>
+                    <td>{{ entry["is_vpn"] }}</td>
+                    <td>{{ entry["is_bot"] }}</td>
+                    <td>{{ entry["is_malicious"] }}</td>
+                    <td>{{ entry["username"] }}</td>
+                    <td>{{ entry["last_checked"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+    </div>
+</body>
+</html>
