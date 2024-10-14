@@ -19,64 +19,11 @@ Reto Meli/ │ ├── auth.py # Módulo para autenticación y generación de 
    cd Reto_MercadoLibre_ObSec-Dev
 
 
-Crea un entorno virtual y activa:
-
-bash
-Copiar código
-python -m venv env
-source env/bin/activate  # En Linux/macOS
-env\Scripts\activate      # En Windows
-Instala dependencias:
-
-bash
-Copiar código
-pip install -r requirements.txt
-Ejecuta la aplicación:
-
-bash
-Copiar código
-uvicorn main:app --reload
-
-Uso con Docker
-Construir la imagen:
-
-bash
-Copiar código
-docker build -t reto-api .
-Ejecutar la aplicación con Docker:
-
-bash
-Copiar código
-docker run -d -p 8000:8000 reto-api
-Con Docker Compose:
-
-bash
-Copiar código
-docker-compose up --build
-
-Endpoints Principales
-/ip-info: Consulta información de una IP.
-/add-important-ip: Marca una IP como importante.
-/important-ips: Muestra las IPs importantes.
-Autenticación con JWT
-Para acceder a endpoints protegidos, es necesario incluir un token JWT en las solicitudes. El token se genera tras iniciar sesión y se envía en la cabecera como:
-
-makefile
-Copiar código
-Authorization: Bearer <token>
-Ejecución de Tests
-bash
-Copiar código
-pytest tests/
-
-
 ---
 
 ## **3. Documentación sobre la aplicación, su funcionamiento y consideraciones**
 
-Voy a generar un archivo **`DOCUMENTACION.md`** que detalla el funcionamiento de la aplicación y cualquier consideración técnica.
 
-### **DOCUMENTACION.md**
 ```markdown
 # Documentación del Proyecto - Reto MercadoLibre ObSec Dev
 
