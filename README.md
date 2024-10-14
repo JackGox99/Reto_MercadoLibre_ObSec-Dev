@@ -39,7 +39,18 @@ Reto Meli
 1. **Clona el Repositorio:**
    ```bash
    git clone https://github.com/tu-usuario/Reto_MercadoLibre_ObSec-Dev.git
+
    cd Reto_MercadoLibre_ObSec-Dev
+   
+   **Para subir el contenedor**
+
+   docker-compose up -d 
+
+   **para bajar el contenedor**
+
+   docker-compose down
+   ```
+
 
 
 ---
