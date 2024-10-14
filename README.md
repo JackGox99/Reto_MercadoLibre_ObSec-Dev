@@ -7,30 +7,21 @@ Este proyecto consiste en una API desarrollada en **Python** utilizando **FastAP
 
 ## Estructura del Proyecto
 
-Reto Meli/
-│
-├── auth.py              # Módulo para autenticación y generación de tokens JWT
-├── database.py          # Módulo para gestión de la base de datos SQLite
-├── main.py              # Archivo principal de la API
-├── Dockerfile           # Definición del contenedor Docker
-├── docker-compose.yml   # Orquestación de servicios Docker
-├── templates/           # Plantillas HTML para las vistas
-│   ├── base.html
-│   ├── dashboard.html
-│   ├── filter.html
-│   ├── important_ips.html
-│   ├── login.html
-│   └── register.html
-├── static/              # Archivos estáticos (CSS, imágenes)
-│   ├── image.png
-│   └── styles.css
-├── tests/               # Tests unitarios para asegurar calidad
-│   ├── test_auth.py
-│   ├── test_database.py
-│   └── test_main.py
-├── requirements.txt     # Lista de dependencias
-├── database.db          # Archivo de la base de datos SQLite
-└── secret_key.txt       # Archivo con clave secreta para JWT
+Reto Meli/│├── auth.py              \# Módulo para autenticación y
+generación de tokens JWT├── database.py          \# Módulo para gestión
+de la base de datos SQLite├── main.py              \# Archivo principal
+de la API├── Dockerfile           # Definición del contenedor Docker├──
+docker-compose.yml   # Orquestación de servicios Docker├── templates/   
+       # Plantillas HTML para las vistas│   ├── base.html│   ├──
+dashboard.html│   ├── filter.html│   ├── important_ips.html│   ├──
+login.html│   └── register.html├── static/              \# Archivos
+estáticos (CSS, imágenes)│   ├── image.png│   └── styles.css├── tests/ 
+             # Tests unitarios para asegurar calidad│   ├──
+test_auth.py│   ├── test_database.py│   └── test_main.py├──
+requirements.txt     # Lista de dependencias├── database.db          \#
+Archivo de la base de datos SQLite└── secret_key.txt       # Archivo con
+clave secreta para JWT
+
 
 ---
 
