@@ -33,25 +33,20 @@ Reto Meli
 ├── database.db             # Archivo de la base de datos SQLite
 └── secret_key.txt          # Archivo con clave secreta para JWT
 ```
----
 
+---
 ## Instalación y Ejecución Local
-1. **Clona el Repositorio:**
+1. Clona el Repositorio:
+
    ```bash
    git clone https://github.com/tu-usuario/Reto_MercadoLibre_ObSec-Dev.git
-
    cd Reto_MercadoLibre_ObSec-Dev
-   
-   **Para subir el contenedor**
 
-   docker-compose up -d 
+   # Para subir el contenedor
+   docker-compose up -d
 
-   **para bajar el contenedor**
-
+   # Para bajar el contenedor
    docker-compose down
-   ```
-
-
 
 ---
 
