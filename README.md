@@ -23,10 +23,6 @@ Reto Meli/ │ ├── auth.py # Módulo para autenticación y generación de 
 
 ## **3. Documentación sobre la aplicación, su funcionamiento y consideraciones**
 
-
-```markdown
-# Documentación del Proyecto - Reto MercadoLibre ObSec Dev
-
 ## Descripción General
 Este proyecto es una API desarrollada con **Python** y **FastAPI**. La aplicación permite gestionar IPs, autenticación con JWT, y está preparada para su despliegue en Docker.
 
