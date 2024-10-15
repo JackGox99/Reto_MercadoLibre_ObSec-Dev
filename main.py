@@ -28,7 +28,6 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-# Token de ipinfo.io (reemplaza con tu token)
 IPINFO_TOKEN = "1adea7cad9f59d"
 # Inicializar la base de datos al arrancar
 @asynccontextmanager
@@ -37,12 +36,10 @@ async def lifespan(app: FastAPI):
     print("Inicializando la base de datos...")
     init_db()  # Llama a tu función de inicialización de la BBDD aquí
 
-    yield  # Esto marca el punto donde FastAPI empieza a manejar solicitudes
+    yield  
 
-    # Lógica opcional de cierre al apagar la aplicación
     print("Aplicación cerrada.")
 
-# Mantener la SECRET_KEY consistente
 def load_secret_key():
     """Carga la clave secreta desde un archivo."""
     try:
@@ -92,7 +89,6 @@ def home(request: Request):
     token = request.cookies.get("access_token")
     user_authenticated = False
 
-    # Asegúrate de pasar SECRET_KEY a verify_token
     if token and verify_token(token, SECRET_KEY):  
         user_authenticated = True
 
@@ -141,7 +137,7 @@ def login(
     user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     
     if not user or not verify_password(password, user["hashed_password"]):
-        # Si las credenciales son inválidas, renderizamos el template con un mensaje de error
+
         return templates.TemplateResponse(
             "login.html", 
             {"request": request, "error_message": "Credenciales inválidas", "title": "Iniciar sesión"}
@@ -177,8 +173,8 @@ def dashboard(request: Request, db: sqlite3.Connection = Depends(get_db)):
 def filter_history(
     request: Request,
     country_code: Optional[str] = Query(None),
-    is_tor: Optional[str] = Query(None),  # Se recibe como str
-    is_cloud: Optional[str] = Query(None),  # Se recibe como str
+    is_tor: Optional[str] = Query(None),  
+    is_cloud: Optional[str] = Query(None),  
     start_date: Optional[str] = Query(None),
     end_date: Optional[str] = Query(None),
     db: sqlite3.Connection = Depends(get_db)
@@ -187,11 +183,9 @@ def filter_history(
     if not token or not verify_token(token, SECRET_KEY):
         return RedirectResponse("/login")
 
-    # Construcción dinámica de la consulta SQL
     query = "SELECT * FROM ip_info WHERE 1=1"
     params = []
 
-    # Agregar condiciones solo si los parámetros no son None o están vacíos
     if country_code:
         query += " AND country_code = ?"
         params.append(country_code)
@@ -273,7 +267,7 @@ def important_ips(request: Request, db: sqlite3.Connection = Depends(get_db)):
 def logout(request: Request):
     """Elimina el token y redirige al login."""
     response = RedirectResponse(url="/login", status_code=302)
-    response.delete_cookie(key="access_token")  # Eliminar el token de las cookies
+    response.delete_cookie(key="access_token")  
     return response
 
 
@@ -281,7 +275,7 @@ def is_malicious_ip_virustotal(ip: str) -> bool:
     """Consulta si una IP es maliciosa usando la API de VirusTotal."""
     url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
     headers = {
-        "x-apikey": "cb4f61dd4ba65a919b520446f696b18097509fa9dda293817eb070df6000e92d"  # Reemplaza con tu API Key de VirusTotal
+        "x-apikey": "cb4f61dd4ba65a919b520446f696b18097509fa9dda293817eb070df6000e92d"
     }
     
     response = requests.get(url, headers=headers)
@@ -374,7 +368,7 @@ def get_ip_info(
             ip_info["username"] = username  # Agregamos el usuario al diccionario de resultados
             results.append(ip_info)
 
-        # Mostrar los resultados en la plantilla result.html
+
         return templates.TemplateResponse("result.html", {"request": request, "results": results})
 
     except Exception as e:
@@ -410,7 +404,6 @@ def is_tor_ip(ip: str) -> bool:
 
 def is_vpn_ip(ip: str):
     """Aquí se puede integrar un servicio de reputación de IPs para verificar VPNs."""
-    # Para VPNs, servicios como ipinfo tienen planes pagos que lo soportan.
     return False
 
 
@@ -422,7 +415,7 @@ def init_db():
     """Inicializa la base de datos y crea la tabla ip_info."""
     with get_db() as conn:
         conn.execute("PRAGMA journal_mode=WAL;")
-        # Eliminar la tabla existente (si la hay)
+        # Eliminar la tabla existente ¿
         #conn.execute("DROP TABLE IF EXISTS ip_info")
 
         # Crear la tabla con la estructura correcta
